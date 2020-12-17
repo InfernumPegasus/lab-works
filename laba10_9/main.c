@@ -2,6 +2,17 @@
 #include <stdio.h>
 #include <locale.h>
 
+void TextEnter(char** A, int n, int m)
+{
+    for(int i = 0; i < n; i++)
+    {
+        printf("A[%d] : ", i);
+        //rewind(stdin);
+        fgets(A[i], m, stdin);
+        rewind(stdin);
+    }
+}
+
 int clearStdin() // функция для проверки
 {
     int rv = 1, ch;
@@ -101,7 +112,7 @@ int main()
 
   printf("Введите кол-во матриц для обработки: ");
   int a; // кол-во матриц
-  while (1)
+   while (1)
     {
         readCount = scanf_s("%d", &a);
         isEmpty = clearStdin();
@@ -142,7 +153,7 @@ int main()
     // проверка на вводимое число
 
   rewind(stdin);
-  //system("CLS");
+  system("CLS");
 
   int i;
 
@@ -157,40 +168,36 @@ int main()
   int* mas = (int*)calloc(n, sizeof(int));
    // создание дин. массива для хранения чисел
 
-  for(a = 0; a < n; a++)
-  {
-      printf("Матрица %d:\n", a);
-      k = 0;
-      for(i = 0; i < n; i++)
-  {
-      printf("Строка %d : ", i);
-      fgets(A[i], m + 1, stdin);
-      rewind(stdin);
-  }
-    //    ввод текста по строкам
+  int j;
 
+  for(j = 0; j < a; j++)
+  {
+      printf("Матрица %d:\n", j + 1);
+
+  TextEnter(A, n, m);  // ввод текста по строкам
 
   printf("\nВведенный текст:\n");
 
   for(i = 0; i < n; i++)
   {
-      printf("Строка %d : ", i);
+      printf("Строка %d : ", i + 1);
       puts(A[i]);
   }
     // вывод текста
-
+      k = 0;
 for(i = 0; i < n; i++)
 {
     char *tmp = strfnd(A[i]);
     mas[k] = atoi(tmp);
-    printf("Число %d строки: %d\n", k, mas[k]);
+    printf("Число %d строки: %d\n", k + 1, mas[k]);
     k++;
-    //printf("Число строки: %d\n", atoi(tmp));
 }
     //  вывод числа на экран
-
+    getchar();
+    rewind(stdin);
+    system("CLS");
   }
-  // обработка матриц
+    // обработка матриц
 
   for(i = 0; i < n; i++)
   {
